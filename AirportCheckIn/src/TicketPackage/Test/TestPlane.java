@@ -1,5 +1,7 @@
 package TicketPackage.Test;
 
+import TicketPackage.PlanePackage.Plane;
+
 /*******
  *   AirportCheckIn:TicketPackage.Test
  *   File: TestPlane
@@ -10,6 +12,6 @@ package TicketPackage.Test;
  *******/
 public class TestPlane {
     public static void main(String[] args) {
-        
+        Plane myPlane = new Plane();
     }
 }
