@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *   File: Plane
  *   Created by: Melissa Melaugh
  *   Created on: 25/11/2020
- *   Updated on: 27/11/2020
+ *   Updated on: 29/11/2020
  *   Project Description: Stores information about a plane
  *******/
 public class Plane {
@@ -19,7 +19,8 @@ public class Plane {
     //private Adult[] adults;
     //private Child[] children;
     //private Seniors[] seniors;
-
+    private ArrayList<String> availableSeats;
+    private int passengers;
 
     public Plane(){
         this(2,2); //creates a plane at the standard price
@@ -28,31 +29,33 @@ public class Plane {
     public Plane(int month, int weekday){
         convertMonth(month);
         convertWeekday(weekday);
-        this.prices = PRICES[(month-1)][weekday];
+        this.prices = PRICES[month][(weekday-1)];
+        this.availableSeats = SEATS;
     }
 
+    //THESE ARE THE MANIPULATION METHODS
     private void convertWeekday(int weekday){
         switch(weekday){
-            case 0:
-                this.weekday = "Monday";
-                break;
             case 1:
-                this.weekday = "Tuesday";
+                this.weekday = "Sunday";
                 break;
             case 2:
-                this.weekday = "Wednesday";
+                this.weekday = "Monday";
                 break;
             case 3:
-                this.weekday = "Thursday";
+                this.weekday = "Tuesday";
                 break;
             case 4:
-                this.weekday = "Friday";
+                this.weekday = "Wednesday";
                 break;
             case 5:
-                this.weekday = "Saturday";
+                this.weekday = "Thursday";
+                break;
+            case 6:
+                this.weekday = "Friday";
                 break;
             default:
-                this.weekday = "Sunday";
+                this.weekday = "Saturday";
         }
     }
 
@@ -84,6 +87,30 @@ public class Plane {
         }
     }
 
+    public void takeSeat(String seat) throws Exception {
+        if(availableSeats.contains(seat)){
+            availableSeats.remove(seat);
+            System.out.println(String.format("Seat %s booked!", seat));
+        }else{
+            throw new Exception("Seat unavailable!");
+        }
+    }
+
+    //THIS IS WHERE THE GETTERS ARE
+    public double getChildPrice(){
+        return this.prices[0];
+    }
+
+    public double getAdultPrice(){
+        return this.prices[1];
+    }
+
+    public double getSeniorPrice(){
+        return this.prices[2];
+    }
+
+
+    //THIS IS WHERE THE STATIC METHODS BEGIN
     private static double[][][] createWeekdayVariations(){
         final double childDiscount = 25; //in percent (https://www.norwegian.com/uk/travel-info/travelling-with-children/discounts-for-children/)
         final double seniorDiscount = 10; //in percent (https://www.cheapflights.com/news/how-to-find-senior-airfare-discounts)
@@ -132,5 +159,4 @@ public class Plane {
         }
         return seatList;
     }
-
 }
