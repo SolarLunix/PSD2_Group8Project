@@ -3,7 +3,6 @@ package TicketPackage.PlanePackage;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Hashtable;
 
 /*******
@@ -17,6 +16,11 @@ import java.util.Hashtable;
 public class SchedulePlanes {
     private static Hashtable<String, ArrayList<Plane>> schedule = new Hashtable<String, ArrayList<Plane>>();
 
+    /**
+     * This method is meant to generate all of the planes for a given month integer
+     * @param month - an int from 0-11 representing the corresponding month -1 (0-January, 1-February, etc)
+     * @param year - an int representing the current year
+     */
     private static void generateMonth(int month, int year){
         String key = String.format("%d%d", year, (month+1));
 
@@ -36,22 +40,48 @@ public class SchedulePlanes {
         schedule.put(key, monthOfPlanes);
     }
 
+    /**
+     * This method is used to update the schedule
+     */
     public static void updateSchedule(){
-        Calendar c = Calendar.getInstance();
-        int month = c.get(Calendar.MONTH);
-        int year = c.get(Calendar.YEAR);
+        final int MONTHS_IN_YEAR = 12;
+        Calendar today = Calendar.getInstance(); //This gets the current
+        int month = today.get(Calendar.MONTH); //This returns the 0-indexed month
+        int year = today.get(Calendar.YEAR); //This returns the full year
 
-        updateSchedule(month, year);
-        updateSchedule((month+1), year);
+        //Remove the previous month if it exists. Can be tested with: addMonthToSchedule((month-1), year);
+        String key = String.format("%d%d", year, month);
+        removeMonth(key);
+
+        //Add this month's planes to the schedule if it doesn't exist.
+        key = String.format("%d%d", year, (month + 1));
+        addMonthToSchedule(month, year, key);
+
+        //Increase the month by one and create the schedule for the next month if it doesn't exist
+        month++;
+        month %= MONTHS_IN_YEAR;
+        key = String.format("%d%d", year, (month + 1));
+        addMonthToSchedule(month, year, key);
     }
 
-    private static void updateSchedule(int month, int year){
-        String key = String.format("%d%d", year, (month+1));
-
+    /**
+     * This method is to add a month to the schedule
+     * @param month - an int from 0-11 representing the corresponding month -1 (0-January, 1-February, etc)
+     * @param year - an int representing the current year
+     * @param key - the key for the hashtable entry
+     */
+    private static void addMonthToSchedule(int month, int year, String key){
         if(schedule.containsKey(key)){
-            System.out.println("Key good!");
+            System.out.println("This month already exists.");
         }else{
             generateMonth(month, year);
+        }
+    }
+
+    private static void removeMonth(String key){
+        if(schedule.containsKey(key)){
+            schedule.remove(key);
+            System.out.println(String.format("Entry %s removed.", key));
         }
     }
 

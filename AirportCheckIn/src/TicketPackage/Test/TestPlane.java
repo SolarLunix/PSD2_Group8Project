@@ -15,7 +15,6 @@ public class TestPlane {
     public static void main(String[] args) {
         Plane myPlane = new Plane();
         SchedulePlanes.updateSchedule();
-        SchedulePlanes.updateSchedule();
         try {
             myPlane.takeSeat("A1");
             myPlane.takeSeat("A2");

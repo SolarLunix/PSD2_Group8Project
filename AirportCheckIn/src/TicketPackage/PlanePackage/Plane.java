@@ -20,10 +20,11 @@ public class Plane {
     //private Child[] children;
     //private Seniors[] seniors;
     private ArrayList<String> availableSeats;
+    private ArrayList<String> takenSeats;
     private int passengers;
 
     public Plane(){
-        this(2,2); //creates a plane at the standard price
+        this(2,3); //creates a plane at the standard price
     }
 
     public Plane(int month, int weekday){
@@ -90,6 +91,7 @@ public class Plane {
     public void takeSeat(String seat) throws Exception {
         if(availableSeats.contains(seat)){
             availableSeats.remove(seat);
+            takenSeats.add(seat);
             System.out.println(String.format("Seat %s booked!", seat));
         }else{
             throw new Exception("Seat unavailable!");
@@ -122,7 +124,7 @@ public class Plane {
         final double[] basePrice = {childPrice, childDiscount, seniorPrice};
 
         //(https://www.skyscanner.com/tips-and-inspiration/search-and-save-look-cheapest-flight-prices-month-and-year)
-        final double[] weekdayMarkups = {10, -5, 0, 5, 10, 15, 15}; //starts with Monday
+        final double[] weekdayMarkups = {15, 10, -5, 0, 5, 10, 15}; //starts with Sunday
         final double[] monthMarkups = {-5, -10, 0, 0, 5, 10, 15, 15, -5, 0, 0, 20}; //starts with January
 
         double[][][] prices = new double[12][7][3]; //Month, Weekday, AgeCategory
@@ -132,13 +134,13 @@ public class Plane {
                 for (int pricePosition = 0; pricePosition < basePrice.length; pricePosition++) {
                     double priceAdjustmentPercent = monthMarkups[month] + weekdayMarkups[weekday];
                     double priceAdjustment = 0;
-                    if(priceAdjustment != 0){
+                    if(priceAdjustment != 0){ //handling a divide by zero error
                         priceAdjustment = basePrice[pricePosition]/priceAdjustmentPercent;
                     }
                     double price = basePrice[pricePosition] + priceAdjustment;
                     prices[month][weekday][pricePosition] = price;
 
-                    //System.out.printf("Month %d Weekday %d has a price of £%8.2f\n", month, weekday, price);
+                    System.out.printf("Price %d Month %d Weekday %d has a price of £%8.2f\n", pricePosition, month, weekday, price);
                 }
             }
         }
@@ -154,7 +156,7 @@ public class Plane {
             for(int seat: seats){
                 String theSeat = String.format("%c%d", row, seat);
                 seatList.add(theSeat);
-                //System.out.println(theSeat);
+                System.out.println(theSeat + " was created.");
             }
         }
         return seatList;
