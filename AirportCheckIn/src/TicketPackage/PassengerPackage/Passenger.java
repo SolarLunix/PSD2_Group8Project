@@ -9,5 +9,29 @@ package TicketPackage.PassengerPackage;
  *   Project Description: //TODO
  *******/
 public class Passenger {
+    static int number = 0;
+    String name;
 
+    String depatureDate;
+
+    public Passenger(){
+        this("Henry Hoover", null, null);
+    }
+
+    public Passenger(String passengerName){
+        this(passengerName, null, null);
+    }
+
+    public Passenger(String passengerName, String seat, String depatureDate1){
+        number++;
+        name = passengerName;
+        depatureDate = depatureDate1;
+    }
+
+    @Override
+    public String toString() {
+        String out = "blaha blahaldkfashdkah df";
+        out += "Departure date:             " + depatureDate;
+        return out;
+    }
 }
