@@ -11,8 +11,13 @@ import java.util.ArrayList;
  *   Project Description: Stores information about a plane
  *******/
 public class Plane {
+    //static variables
+    private static final char[] ROWS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'};
+    private static final int[] SEATS_IN_ROW = {1, 2, 3, 4, 5, 6};
     private static final double[][][] PRICES = createWeekdayVariations();
     private static final ArrayList<String> SEATS = createSeatingChart();
+
+    //instance variables
     private String month;
     private String weekday;
     private double[] prices;
@@ -21,20 +26,31 @@ public class Plane {
     //private Seniors[] seniors;
     private ArrayList<String> availableSeats;
     private ArrayList<String> takenSeats;
-    private int passengers;
 
+    /**
+     * The default constructor, makes a plane for a Tuesday in February. (The default price)
+     */
     public Plane(){
         this(2,3); //creates a plane at the standard price
     }
 
+    /**
+     *
+     * @param month
+     * @param weekday
+     */
     public Plane(int month, int weekday){
         convertMonth(month);
         convertWeekday(weekday);
         this.prices = PRICES[month][(weekday-1)];
         this.availableSeats = SEATS;
+        this.takenSeats = new ArrayList<String>();
     }
 
-    //THESE ARE THE MANIPULATION METHODS
+    /**
+     *
+     * @param weekday
+     */
     private void convertWeekday(int weekday){
         switch(weekday){
             case 1:
@@ -60,6 +76,10 @@ public class Plane {
         }
     }
 
+    /**
+     *
+     * @param month
+     */
     private void convertMonth(int month){
         if (month == 1) {
             this.month = "January";
@@ -88,6 +108,11 @@ public class Plane {
         }
     }
 
+    /**
+     *
+     * @param seat
+     * @throws Exception if the seat is unavailable
+     */
     public void takeSeat(String seat) throws Exception {
         if(availableSeats.contains(seat)){
             availableSeats.remove(seat);
@@ -98,21 +123,51 @@ public class Plane {
         }
     }
 
-    //THIS IS WHERE THE GETTERS ARE
+    public void showAvailableSeats(){
+        System.out.println(" * * * AVAILABLE SEATS * * *");
+        char currentRow = 'z';
+        String out = "     (Front of plane)";
+        for(String seat : availableSeats){
+            if(seat.charAt(0) != currentRow){
+                out += String.format("\n    %s", seat);
+                currentRow = seat.charAt(0);
+            } else {
+                out += String.format(" %s", seat);
+            }
+        }
+        System.out.println(out);
+        System.out.println("     (Back of plane)");
+        System.out.println(" *   *   *   *   *   *   *");
+    }
+
+    /**
+     *
+     * @return
+     */
     public double getChildPrice(){
         return this.prices[0];
     }
 
+    /**
+     *
+     * @return
+     */
     public double getAdultPrice(){
         return this.prices[1];
     }
 
+    /**
+     *
+     * @return
+     */
     public double getSeniorPrice(){
         return this.prices[2];
     }
 
-
-    //THIS IS WHERE THE STATIC METHODS BEGIN
+    /**
+     *
+     * @return
+     */
     private static double[][][] createWeekdayVariations(){
         final double childDiscount = 25; //in percent (https://www.norwegian.com/uk/travel-info/travelling-with-children/discounts-for-children/)
         final double seniorDiscount = 10; //in percent (https://www.cheapflights.com/news/how-to-find-senior-airfare-discounts)
@@ -121,7 +176,7 @@ public class Plane {
         final double childPrice = adultPrice - (adultPrice/childDiscount);
         final double seniorPrice = adultPrice - (adultPrice/seniorDiscount);
 
-        final double[] basePrice = {childPrice, childDiscount, seniorPrice};
+        final double[] basePrice = {childPrice, adultPrice, seniorPrice};
 
         //(https://www.skyscanner.com/tips-and-inspiration/search-and-save-look-cheapest-flight-prices-month-and-year)
         final double[] weekdayMarkups = {15, 10, -5, 0, 5, 10, 15}; //starts with Sunday
@@ -134,29 +189,33 @@ public class Plane {
                 for (int pricePosition = 0; pricePosition < basePrice.length; pricePosition++) {
                     double priceAdjustmentPercent = monthMarkups[month] + weekdayMarkups[weekday];
                     double priceAdjustment = 0;
-                    if(priceAdjustment != 0){ //handling a divide by zero error
-                        priceAdjustment = basePrice[pricePosition]/priceAdjustmentPercent;
+                    if(priceAdjustmentPercent != 0){ //handling a divide by zero error
+                        priceAdjustment = basePrice[pricePosition] / priceAdjustmentPercent;
                     }
                     double price = basePrice[pricePosition] + priceAdjustment;
                     prices[month][weekday][pricePosition] = price;
 
-                    System.out.printf("Price %d Month %d Weekday %d has a price of £%8.2f\n", pricePosition, month, weekday, price);
+                    //System.out.printf("Month %d Weekday %d has a price of £%8.2f for a person of type %d\n", month+1, weekday, price, pricePosition);
                 }
             }
         }
         return prices;
     }
 
+    /**
+     *
+     * @return
+     */
     private static ArrayList<String> createSeatingChart(){
-        char[] rows = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'};
-        int[] seats = {1, 2, 3, 4, 5, 6};
+        //Set up the rows, and seats in a row
         ArrayList<String> seatList = new ArrayList<String>();
 
-        for(char row : rows){
-            for(int seat: seats){
+        //Make sure that each row has the full amount of seats
+        for(char row : ROWS){
+            for(int seat: SEATS_IN_ROW){
                 String theSeat = String.format("%c%d", row, seat);
                 seatList.add(theSeat);
-                System.out.println(theSeat + " was created.");
+                //System.out.println(theSeat + " was created.");
             }
         }
         return seatList;

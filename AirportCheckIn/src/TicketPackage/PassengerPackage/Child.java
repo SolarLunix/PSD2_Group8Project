@@ -19,5 +19,4 @@ public class Child extends Passenger{
         super(name, null, null);
         numChildren++;
     }
-
 }

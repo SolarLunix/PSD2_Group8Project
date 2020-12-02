@@ -22,5 +22,7 @@ public class TestPlane {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        myPlane.showAvailableSeats();
     }
 }
