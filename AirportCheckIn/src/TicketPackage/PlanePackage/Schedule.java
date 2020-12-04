@@ -1,5 +1,6 @@
 package TicketPackage.PlanePackage;
 
+import java.io.File;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,13 +8,13 @@ import java.util.Hashtable;
 
 /*******
  *   AirportCheckIn:TicketPackage.PlanePackage
- *   File: SchedulePlanes
+ *   File: Schedule
  *   Created by: Melissa Melaugh
  *   Created on: 29/11/2020
  *   Updated on: 29/11/2020
  *   Project Description: This class helps control the planes ((A completely static class))
  *******/
-public class SchedulePlanes {
+public class Schedule {
     private static Hashtable<String, ArrayList<Plane>> schedule = new Hashtable<String, ArrayList<Plane>>();
 
     /**
@@ -90,6 +91,14 @@ public class SchedulePlanes {
             schedule.remove(key);
             System.out.println(String.format("Entry %s removed.", key));
         }
+    }
+
+    /**
+     *
+     * @param file
+     */
+    public static void loadSchedule(File file){
+        //TODO
     }
 
 }

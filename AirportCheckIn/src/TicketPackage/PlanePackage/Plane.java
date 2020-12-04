@@ -1,5 +1,8 @@
 package TicketPackage.PlanePackage;
 
+import TicketPackage.PassengerPackage.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*******
@@ -10,7 +13,7 @@ import java.util.ArrayList;
  *   Updated on: 29/11/2020
  *   Project Description: Stores information about a plane
  *******/
-public class Plane {
+public class Plane implements Serializable {
     //static variables
     private static final char[] ROWS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'};
     private static final int[] SEATS_IN_ROW = {1, 2, 3, 4, 5, 6};
@@ -22,7 +25,7 @@ public class Plane {
     private String weekday;
     private double[] prices;
     //private Adult[] adults;
-    //private Child[] children;
+    private Child[] children;
     //private Seniors[] seniors;
     private ArrayList<String> availableSeats;
     private ArrayList<String> takenSeats;
@@ -78,7 +81,7 @@ public class Plane {
 
     /**
      *
-     * @param month
+     * @param month - the month corresponding to the month in the year (1 - January, etc)
      */
     private void convertMonth(int month){
         if (month == 1) {
@@ -123,6 +126,9 @@ public class Plane {
         }
     }
 
+    /**
+     *
+     */
     public void showAvailableSeats(){
         System.out.println(" * * * AVAILABLE SEATS * * *");
         char currentRow = 'z';

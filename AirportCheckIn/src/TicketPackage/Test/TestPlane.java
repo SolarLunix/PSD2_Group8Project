@@ -1,7 +1,7 @@
 package TicketPackage.Test;
 
 import TicketPackage.PlanePackage.Plane;
-import TicketPackage.PlanePackage.SchedulePlanes;
+import TicketPackage.PlanePackage.Schedule;
 
 /*******
  *   AirportCheckIn:TicketPackage.Test
@@ -14,7 +14,7 @@ import TicketPackage.PlanePackage.SchedulePlanes;
 public class TestPlane {
     public static void main(String[] args) {
         Plane myPlane = new Plane();
-        SchedulePlanes.updateSchedule();
+        Schedule.updateSchedule();
         try {
             myPlane.takeSeat("A1");
             myPlane.takeSeat("A2");

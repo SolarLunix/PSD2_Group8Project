@@ -1,5 +1,7 @@
 package TicketPackage.PassengerPackage;
 
+import java.io.Serializable;
+
 /*******
  *   AirportCheckIn:TicketPackage.PassengerPackage
  *   File: Passenger
@@ -8,7 +10,7 @@ package TicketPackage.PassengerPackage;
  *   Updated on: 25/11/2020
  *   Project Description: //TODO
  *******/
-public class Passenger {
+public class Passenger implements Serializable {
     static int number = 0;
     String name;
 
