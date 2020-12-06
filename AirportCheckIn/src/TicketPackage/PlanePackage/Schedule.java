@@ -1,6 +1,7 @@
 package TicketPackage.PlanePackage;
 
 import java.io.File;
+import java.io.Serializable;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,8 +15,16 @@ import java.util.Hashtable;
  *   Updated on: 29/11/2020
  *   Project Description: This class helps control the planes ((A completely static class))
  *******/
-public class Schedule {
+public class Schedule implements Serializable {
     private static Hashtable<String, ArrayList<Plane>> schedule = new Hashtable<String, ArrayList<Plane>>();
+
+    public static Hashtable<String, ArrayList<Plane>> getSchedule(){
+        return schedule;
+    }
+
+    public static void setSchedule(Hashtable<String, ArrayList<Plane>> loadedSchedule){
+        schedule = loadedSchedule;
+    }
 
     /**
      * This method is meant to generate all of the planes for a given month integer
@@ -93,12 +102,9 @@ public class Schedule {
         }
     }
 
-    /**
-     *
-     * @param file
-     */
-    public static void loadSchedule(File file){
-        //TODO
+    public static Plane getPlane(int day, int month, int year){
+        String key = String.format("%d-%d", year, month);
+        return schedule.get(key).get(day);
     }
 
 }

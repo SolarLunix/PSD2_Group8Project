@@ -13,16 +13,17 @@ import TicketPackage.PlanePackage.Schedule;
  *******/
 public class TestPlane {
     public static void main(String[] args) {
-        Plane myPlane = new Plane();
         Schedule.updateSchedule();
+        Plane myPlane = Schedule.getPlane(25, 12, 2020);
         try {
             myPlane.takeSeat("A1");
             myPlane.takeSeat("A2");
             myPlane.takeSeat("A1");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Unavailable try again.");
         }
 
-        myPlane.showAvailableSeats();
+        Plane yourPlane = Schedule.getPlane(25, 12, 2020);
+        yourPlane.showAvailableSeats();
     }
 }

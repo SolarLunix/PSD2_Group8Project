@@ -12,6 +12,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 import TicketPackage.PlanePackage.*;
 
 public class ObjectIOExample {
@@ -21,8 +24,9 @@ public class ObjectIOExample {
     public static void main(String args[]) {
 
         ObjectIOExample objectIO = new ObjectIOExample();
+        Schedule.updateSchedule();
 
-        Plane myPlane = new Plane();
+        Plane myPlane = Schedule.getPlane(25, 12, 2020);
         try {
             myPlane.takeSeat("A1");
             myPlane.takeSeat("A2");
@@ -32,11 +36,12 @@ public class ObjectIOExample {
 
         myPlane.showAvailableSeats();
 
-        objectIO.WriteObjectToFile(filepath, myPlane);
+        objectIO.WriteObjectToFile(filepath, Schedule.getSchedule());
 
         //Read object from file
-        Plane st = (Plane) objectIO.ReadObjectFromFile(filepath);
-        st.showAvailableSeats();
+        Schedule.setSchedule((Hashtable<String, ArrayList<Plane>>) objectIO.ReadObjectFromFile(filepath));
+        Plane loadedPlane = Schedule.getPlane(25, 12, 2020);
+        loadedPlane.showAvailableSeats();
     }
 
     public void WriteObjectToFile(String filepath,Object serObj) {
