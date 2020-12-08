@@ -47,13 +47,11 @@ public class ObjectIOExample {
     public void WriteObjectToFile(String filepath,Object serObj) {
 
         try {
-
             FileOutputStream fileOut = new FileOutputStream(filepath);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(serObj);
             objectOut.close();
             System.out.println("The Object  was succesfully written to a file");
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
