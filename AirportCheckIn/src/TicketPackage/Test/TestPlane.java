@@ -15,6 +15,7 @@ public class TestPlane {
     public static void main(String[] args) {
         Schedule.updateSchedule();
         Plane myPlane = Schedule.getPlane(25, 12, 2020);
+        myPlane.showAvailableSeats();
         try {
             myPlane.takeSeat("A1");
             myPlane.takeSeat("A2");
@@ -25,5 +26,6 @@ public class TestPlane {
 
         Plane yourPlane = Schedule.getPlane(25, 12, 2020);
         yourPlane.showAvailableSeats();
+        System.out.println(yourPlane.toString());
     }
 }

@@ -54,7 +54,7 @@ public class Schedule {
             //get the day of the week as an integer to get the proper price
             int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
             //Create the departure date string
-            String departureDate = String.format("%d-%d-%d", year, month, day);
+            String departureDate = String.format("%d-%d-%d", year, (month + 1), day); //remember that month is 0 indexed
             //Create a plane with this information
             Plane plane = new Plane(month, dayOfWeek, departureDate);
             //Add the plane to the month schedule
@@ -82,7 +82,7 @@ public class Schedule {
 
         //Add this month's planes to the schedule if it doesn't exist.
         key = String.format("%d-%d", year, (month + 1));
-        addMonthToSchedule(month, year, key);
+        addMonth(month, year, key);
 
         //Increase the month by one and create the schedule for the next month if it doesn't exist
         month++;
@@ -91,7 +91,7 @@ public class Schedule {
             year++;
         }//end if
         key = String.format("%d-%d", year, (month + 1));
-        addMonthToSchedule(month, year, key);
+        addMonth(month, year, key);
     }//end updateSchedule
 
     /**
@@ -100,9 +100,9 @@ public class Schedule {
      * @param year an int representing the current year
      * @param key the key for the hashtable entry
      */
-    private static void addMonthToSchedule(int month, int year, String key){
+    private static void addMonth(int month, int year, String key){
         if(schedule.containsKey(key)){
-            System.out.println("This month already exists.");
+            //System.out.println("This month already exists."); //Used for testing
         }else{
             generateMonth(month, year, key);
             System.out.println(String.format("Entry %s added.", key));

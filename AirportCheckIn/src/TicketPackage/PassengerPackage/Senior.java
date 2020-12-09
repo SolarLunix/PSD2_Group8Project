@@ -96,4 +96,21 @@ public class Senior extends Passenger{
         System.out.println("Sorry you can't abandon your kid here.");
         //TODO Actually be able to remove a child
     }//removeChild
+
+
+    @Override
+    /**
+     *
+     */
+    public String toString(){
+        String out = "  *  *  *  PASSENGER DETAILS  *  *  *";
+        out += "\nThe seat reference is:          " + super.getSeat();
+        out += "\nThe passenger first name is:    " + super.getFirstName();
+        out += "\nThe passenger last name is:     " + super.getLastname();
+        out += "\nThe ticket number is:           " + super.getTicketNumber();
+        out += "\nThe departure date is:          " + super.getDepartureDate();
+        out += "\nNumber of Children:             " + getNumberOfAccompanyingChildren();
+        out += "\n  *    *    *    *    *    *    *";
+        return out;
+    }//toString
 }//Senior

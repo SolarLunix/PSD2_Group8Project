@@ -62,6 +62,14 @@ public class Child extends Passenger{
         travelingAlone = false;
     }//setResponsibleAdult
 
+    /**
+     *
+     * @return
+     */
+    public String getResponsibleAdult(){
+        return responsibleAdult;
+    }//getResponsibleAdult
+
     @Override
     /**
      *

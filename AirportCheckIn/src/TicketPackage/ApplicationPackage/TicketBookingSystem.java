@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class TicketBookingSystem {
     //File Paths
     private static final String FILEPATH_SCHEDULE = "C:\\Users\\Solar\\IdeaProjects\\PSD2_Group8Project\\AirportCheckIn\\obj";
-    private static final String FILEPATH_NUMBERS = "C:\\Users\\Solar\\IdeaProjects\\PSD2_Group8Project\\AirportCheckIn\\num";
+    private static final String FILEPATH_NUMBERS = "C:\\Users\\Solar\\IdeaProjects\\PSD2_Group8Project\\AirportCheckIn\\num.txt";
 
     //Scanner for methods
     private static Scanner in = new Scanner(System.in);
@@ -39,9 +39,18 @@ public class TicketBookingSystem {
             Schedule.setSchedule((Hashtable<String, ArrayList<Plane>>) obj);
             //Close the object stream
             objectIn.close();
+            System.out.println("Schedule Loaded!");
+        } catch (Exception ex) {
+            //If the file is unable to be loaded, start fresh.
+            System.out.println("The Schedule could not be Loaded.");
+            //Create the new schedule:
+            Schedule.updateSchedule();
+        }//end try/catch
 
+        try {
             //Get the scanner to read from the file of numbers
-            Scanner scanner = new Scanner(FILEPATH_NUMBERS);
+            File file = new File(FILEPATH_NUMBERS);
+            Scanner scanner = new Scanner(file);
             //Create an Array to hold the numbers
             ArrayList<Integer> numbers = new ArrayList<Integer>();
             //Read the numbers in one by one (in the order Passenger, Adult, Child, Senior)
@@ -65,7 +74,7 @@ public class TicketBookingSystem {
             System.out.println("Data Loaded!");
         } catch (Exception ex) {
             //If the file is unable to be loaded, start fresh.
-            System.out.println("This program is starting new.");
+            System.out.println("There is no Passenger Information, starting new.");
             //Create the new schedule:
             Schedule.updateSchedule();
         }//end try/catch
@@ -335,6 +344,7 @@ public class TicketBookingSystem {
 
         //Print out plane details.
         System.out.println(plane.toString());
+        plane.showAvailableSeats();
     }//end viewPlaneInformation
 
     /**
