@@ -2,15 +2,13 @@ package TicketPackage.PassengerPackage;
 
 import java.io.Serializable;
 
-/*******
- *   AirportCheckIn:TicketPackage.PassengerPackage
- *   File: Passenger
- *   Created by: Ciaran O'Boyle
- *   Created on: 25/11/2020
- *   Updated on: 08/12/2020
- *   Project Description: //TODO
- *******/
-
+/**
+ * //TODO - Project Description
+ * @author Ciaran O'Boyle
+ * Created on: 25/11/2020
+ * Updated on: 08/12/2020
+ * AirportCheckIn:TicketPackage.PassengerPackage:Passenger
+ */
 public abstract class Passenger implements Serializable {
     private static int numberOfPassengers = 0;
     private String seat, firstName, lastName;
@@ -19,7 +17,7 @@ public abstract class Passenger implements Serializable {
 
     /**
      * This method sets the passenger's seat
-     * @param passengerSeat - the String containing the passenger's seat
+     * @param passengerSeat the String containing the passenger's seat
      */
     public void setSeat(String passengerSeat){
         seat=passengerSeat;
@@ -27,7 +25,7 @@ public abstract class Passenger implements Serializable {
 
     /**
      * This method sets the Passenger's name to a new value
-     * @param passengerFirstName - the passenger's first name
+     * @param passengerFirstName the passenger's first name
      */
     public void setFirstname(String passengerFirstName){
         firstName=passengerFirstName;
@@ -112,11 +110,14 @@ public abstract class Passenger implements Serializable {
      */
     public static int getNumberOfPassengers(){
         return numberOfPassengers;
-    }
+    }//getNumberOfPassengers
 
+    /**
+     *
+     */
     protected static void addPassenger(){
         Passenger.numberOfPassengers++;
-    }
+    }//addPassenger
 
     /**
      *
@@ -129,23 +130,5 @@ public abstract class Passenger implements Serializable {
         System.out.println("The ticket number is:         " + ticketNumber);
         System.out.println("The ticket number is:         " + departureDate);
         System.out.println("* * * END * * *");
-    }
-
-
-}
-
-/*
-Passenger: <Ciaran>
-    • Variables:
-            ◦ Double price
-            ◦ String seat
-            ◦ Static Int numberOfPassengers = 0
-            ◦ String firstName
-            ◦ String lastName
-            ◦ Boolean travelingAlone
-            ◦ Int TicketNumber
-            ◦ Plane plane
-            • Methods:
-            ◦ toString
-            ▪ Lists full name, seat number, ticketNumber, and price they paid*/
-
+    }//showAllDetails
+}//Passenger

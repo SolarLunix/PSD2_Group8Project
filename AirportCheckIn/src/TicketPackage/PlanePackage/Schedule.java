@@ -1,26 +1,24 @@
 package TicketPackage.PlanePackage;
 
-import java.io.Serializable;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
 
-/*******
- *   AirportCheckIn:TicketPackage.PlanePackage
- *   File: Schedule
- *   Created by: Melissa Melaugh
+/**
+ *   This class helps control the planes in a schedule ((A completely static class))
+ *   @author Melissa Melaugh
  *   Created on: 29/11/2020
  *   Updated on: 08/12/2020
- *   Project Description: This class helps control the planes in a schedule ((A completely static class))
- *******/
-public class Schedule implements Serializable {
+ *   AirportCheckIn:TicketPackage.PlanePackage:Schedule
+ */
+public class Schedule {
     //static variables
     private static Hashtable<String, ArrayList<Plane>> schedule = new Hashtable<String, ArrayList<Plane>>();
 
     /**
      * This method returns the schedule so that it can be used or saved.
-     * @return - the Hashtable<String, ArrayList<Plane>> schedule
+     * @return the Hashtable<String, ArrayList<Plane>> schedule
      */
     public static Hashtable<String, ArrayList<Plane>> getSchedule(){
         return schedule;
@@ -28,7 +26,7 @@ public class Schedule implements Serializable {
 
     /**
      * This method is responsible for setting the schedule after it has been loaded in
-     * @param loadedSchedule - The loaded Hashtable<String, ArrayList<Plane>> schedule.
+     * @param loadedSchedule The loaded Hashtable<String, ArrayList<Plane>> schedule.
      */
     public static void setSchedule(Hashtable<String, ArrayList<Plane>> loadedSchedule){
         schedule = loadedSchedule;
@@ -36,9 +34,9 @@ public class Schedule implements Serializable {
 
     /**
      * This method is meant to generate all of the planes for a given month integer
-     * @param month - an int from 0-11 representing the corresponding month -1 (0-January, 1-February, etc)
-     * @param year - an int representing the current year
-     * @param key - the key for the hashtable entry
+     * @param month an int from 0-11 representing the corresponding month -1 (0-January, 1-February, etc)
+     * @param year an int representing the current year
+     * @param key the key for the hashtable entry
      */
     private static void generateMonth(int month, int year, String key){
         //Get the number of days in the month, adjusting for the 0 indexed month
@@ -91,16 +89,16 @@ public class Schedule implements Serializable {
         month %= MONTHS_IN_YEAR;
         if(month==0){ //if you are in December, January is NEXT year, add one!
             year++;
-        }
+        }//end if
         key = String.format("%d-%d", year, (month + 1));
         addMonthToSchedule(month, year, key);
     }//end updateSchedule
 
     /**
      * This method is to add a month to the schedule
-     * @param month - an int from 0-11 representing the corresponding month -1 (0-January, 1-February, etc)
-     * @param year - an int representing the current year
-     * @param key - the key for the hashtable entry
+     * @param month an int from 0-11 representing the corresponding month -1 (0-January, 1-February, etc)
+     * @param year an int representing the current year
+     * @param key the key for the hashtable entry
      */
     private static void addMonthToSchedule(int month, int year, String key){
         if(schedule.containsKey(key)){
@@ -108,12 +106,12 @@ public class Schedule implements Serializable {
         }else{
             generateMonth(month, year, key);
             System.out.println(String.format("Entry %s added.", key));
-        }
+        }//end if/else
     }
 
     /**
      * Removes a month from the Hashtable
-     * @param key - the month to remove
+     * @param key the month to remove
      */
     private static void removeMonth(String key){
         //Only try to remove the month if its in the schedule or it will cause an error
@@ -125,10 +123,10 @@ public class Schedule implements Serializable {
 
     /**
      * This method gets the plane if you know the day, month, and year its scheduled in
-     * @param day - the day that the plane is scheduled to take off
-     * @param month - the month that the plane is scheduled to take off
-     * @param year - the year that the month is scheduled to take off
-     * @return - the plane that is linked to that day/month/year
+     * @param day the day that the plane is scheduled to take off
+     * @param month the month that the plane is scheduled to take off
+     * @param year the year that the month is scheduled to take off
+     * @return the plane that is linked to that day/month/year
      */
     public static Plane getPlane(int day, int month, int year){
         //create the proper key to get the plane from the schedule
@@ -140,9 +138,9 @@ public class Schedule implements Serializable {
 
     /**
      * This method gets the plane relative to the current schedule
-     * @param day - the day of the month you want to get the plane of
-     * @param monthChoice - either this month (1) or next month (2)
-     * @return - the plane at the give month/day key
+     * @param day the day of the month you want to get the plane of
+     * @param monthChoice either this month (1) or next month (2)
+     * @return the plane at the give month/day key
      */
     public static Plane getPlane(int day, int monthChoice){
         final int MONTHS_IN_YEAR = 12;
@@ -160,7 +158,7 @@ public class Schedule implements Serializable {
             year++;
         } else if(month==0){
             month = 12; //If you are in December month would be changed to 0, therefore put it back to 12.
-        }
+        }//end if/else
 
         //Create the key string
         String key = String.format("%d-%d", year, month);

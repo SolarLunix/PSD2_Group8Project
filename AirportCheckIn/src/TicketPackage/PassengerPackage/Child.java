@@ -1,24 +1,31 @@
 package TicketPackage.PassengerPackage;
 
-import java.util.ArrayList;
-
-/*******
- *   AirportCheckIn:TicketPackage.PassengerPackage
- *   File: Child
- *   Created by: Michelle Loughran
- *   Created on: 02/12/2020
- *   Updated on: 02/12/2020
- *   Project Description: //TODO
- *******/
+/**
+ * //TODO - Project Description
+ * @author Michelle Loughran
+ * Created on: 02/12/2020
+ * Updated on: 08/12/2020
+ * AirportCheckIn:TicketPackage.PassengerPackage:Child
+ */
 public class Child extends Passenger{
     private static int numberOfChildren = 0;
     private boolean travelingAlone;
     private String responsibleAdult;
 
+    /**
+     *
+     */
     public Child(){
         this("Noah", "Walkers", "None", "None");
     }//Child
 
+    /**
+     *
+     * @param first
+     * @param last
+     * @param seat
+     * @param departureDate
+     */
     public Child(String first, String last, String seat, String departureDate){
         Passenger.addPassenger();
         numberOfChildren++;
@@ -30,14 +37,26 @@ public class Child extends Passenger{
         super.setTicketNumber(Passenger.getNumberOfPassengers());
     }//Child
 
+    /**
+     *
+     * @return
+     */
     public static int getNumberOfChildren(){
         return numberOfChildren;
     }//getNumberOfChildren
 
+    /**
+     *
+     * @param numberOfChildren
+     */
     public static void setNumberOfChildren(int numberOfChildren){
         Child.numberOfChildren = numberOfChildren;
     }//setNumberOfChildren
 
+    /**
+     *
+     * @param responsibleAdult
+     */
     public void setResponsibleAdult(String responsibleAdult) {
         this.responsibleAdult = responsibleAdult;
         travelingAlone = false;
@@ -62,4 +81,4 @@ public class Child extends Passenger{
         out += "\n  *    *    *    *    *    *    *";
         return out;
     }//toString
-}
+}//Child

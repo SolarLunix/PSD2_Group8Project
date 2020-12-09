@@ -2,14 +2,13 @@ package TicketPackage.PassengerPackage;
 
 import java.util.ArrayList;
 
-/*******
- *   AirportCheckIn:TicketPackage.PassengerPackage
- *   File: Senior
- *   Created by: Michelle Loughran
- *   Created on: 08/12/2020
- *   Updated on: 08/12/2020
- *   Project Description: //TODO
- *******/
+/**
+ * //TODO - Project Description
+ * @author  Michelle Loughran
+ * Created on: 08/12/2020
+ * Updated on: 08/12/2020
+ * AirportCheckIn:TicketPackage.PassengerPackage:Senior
+ */
 public class Senior extends Passenger{
     private static int numberOfSeniors = 0;
     private ArrayList<Child> accompanyingChildren;
@@ -23,10 +22,10 @@ public class Senior extends Passenger{
 
     /**
      *
-     * @param first - the first name of the passenger
-     * @param last - the last name of the passenger
-     * @param seat - the chosen seat of the passenger
-     * @param departureDate - the departure date of the passenger
+     * @param first the first name of the passenger
+     * @param last the last name of the passenger
+     * @param seat the chosen seat of the passenger
+     * @param departureDate the departure date of the passenger
      */
     public Senior(String first, String last, String seat, String departureDate){
         Passenger.addPassenger();
@@ -79,7 +78,7 @@ public class Senior extends Passenger{
      */
     public static int getNumberOfSeniors(){
         return numberOfSeniors;
-    }
+    }//getNumberOfSeniors
 
     /**
      *
@@ -87,7 +86,7 @@ public class Senior extends Passenger{
      */
     public void addChild (Child acChild){
         accompanyingChildren.add(acChild);
-    }
+    }//addChild
 
     /**
      *
@@ -96,5 +95,5 @@ public class Senior extends Passenger{
     public void removeChild(Child abandonedKid){
         System.out.println("Sorry you can't abandon your kid here.");
         //TODO Actually be able to remove a child
-    }
-}
+    }//removeChild
+}//Senior

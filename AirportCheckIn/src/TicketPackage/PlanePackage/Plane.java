@@ -6,14 +6,13 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-/*******
- *   AirportCheckIn:TicketPackage.PlanePackage
- *   File: Plane
- *   Created by: Melissa Melaugh
- *   Created on: 25/11/2020
- *   Updated on: 29/11/2020
- *   Project Description: Stores information about a plane
- *******/
+/**
+ * Stores information about a plane
+ * @author Melissa Melaugh
+ * Created on: 25/11/2020
+ * Updated on: 29/11/2020
+ * AirportCheckIn:TicketPackage.PlanePackage:Plane
+ */
 public class Plane implements Serializable {
     //static variables
     private static final char[] ROWS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'};
@@ -40,9 +39,9 @@ public class Plane implements Serializable {
 
     /**
      * This is the complex constructor that initialises everything
-     * @param month - the month, zero indexed, that the plane is to be created for
-     * @param weekday - the day of the week
-     * @param departureDate - the departure date in year-month-day format.
+     * @param month the month, zero indexed, that the plane is to be created for
+     * @param weekday the day of the week
+     * @param departureDate the departure date in year-month-day format.
      */
     public Plane(int month, int weekday, String departureDate){
         this.adults = new ArrayList<>();
@@ -56,7 +55,7 @@ public class Plane implements Serializable {
 
     /**
      * This method moves an available seat from the available seat list to the taken seat list if its available
-     * @param seat - the seat the passenger wishes to take
+     * @param seat the seat the passenger wishes to take
      * @throws Exception if the seat is unavailable
      */
     public void takeSeat(String seat) throws Exception {
@@ -99,7 +98,7 @@ public class Plane implements Serializable {
 
     /**
      * Adds an adult to the adults list.
-     * @param adult - the adult to add to the plane
+     * @param adult the adult to add to the plane
      */
     public void addAdult(Adult adult){
         this.adults.add(adult);
@@ -107,7 +106,7 @@ public class Plane implements Serializable {
 
     /**
      * Adds a child to the children list.
-     * @param child - the child to add to the plane
+     * @param child the child to add to the plane
      */
     public void addChild(Child child){
         this.children.add(child);
@@ -115,7 +114,7 @@ public class Plane implements Serializable {
 
     /**
      * Adds a senior to the seniors list.
-     * @param senior - the senior to add to the plane
+     * @param senior the senior to add to the plane
      */
     public void addSenior(Senior senior){
         this.seniors.add(senior);
@@ -123,7 +122,7 @@ public class Plane implements Serializable {
 
     /**
      * Gets the price of the child for this plane
-     * @return - a double representing the price of a child seat
+     * @return a double representing the price of a child seat
      */
     public double getChildPrice(){
         return this.prices[0];
@@ -131,7 +130,7 @@ public class Plane implements Serializable {
 
     /**
      * Gets the price of the adult for this plane
-     * @return - a double representing the price of an adult's seat
+     * @return a double representing the price of an adult's seat
      */
     public double getAdultPrice(){
         return this.prices[1];
@@ -139,7 +138,7 @@ public class Plane implements Serializable {
 
     /**
      * Gets the price of the senior for this plane
-     * @return - a double representing the price of a senior's ticket
+     * @return a double representing the price of a senior's ticket
      */
     public double getSeniorPrice(){
         return this.prices[2];
@@ -147,7 +146,7 @@ public class Plane implements Serializable {
 
     /**
      * This method returns a string representing the departure date of the plane
-     * @return - a string representing the departure date in year-month-day format
+     * @return a string representing the departure date in year-month-day format
      */
     public String getDepartureDate(){
         return this.departureDate;
@@ -155,7 +154,7 @@ public class Plane implements Serializable {
 
     /**
      * Create the different prices for every month and weekday within the month
-     * @return - the price variations
+     * @return the price variations
      */
     private static double[][][] createWeekdayVariations(){
         //Discounts
@@ -203,7 +202,7 @@ public class Plane implements Serializable {
 
     /**
      * Creates a seating chart from the finals ROWS and COLUMNS - making sure each row and column are even
-     * @return - the full seating chart in ArrayList<String> format.
+     * @return the full seating chart in ArrayList<String> format.
      */
     private static ArrayList<String> createSeatingChart(){
         //reinitialise total seats to 0

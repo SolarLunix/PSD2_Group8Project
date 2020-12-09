@@ -8,20 +8,19 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
-import java.util.concurrent.ScheduledExecutorService;
 
-/*******
- *   AirportCheckIn:TicketPackage.ApplicationPackage
- *   File: TicketBookingSystem
- *   Created by: Melissa Melaugh, Ciaran O'Boyle, Michelle Loughran
- *   Created on: 25/11/2020
- *   Updated on: 08/12/2020
- *   Project Description: This is the main class which runs our Ticket Booking system
- *******/
+/**
+ * This is the main class which runs our Ticket Booking system
+ * @author Melissa Melaugh, Ciaran O'Boyle, Michelle Loughran
+ * Created on: 25/11/2020
+ * Updated on: 08/12/2020
+ * AirportCheckIn:TicketPackage.ApplicationPackage:TicketBookingSystem
+ */
 public class TicketBookingSystem {
     //File Paths
     private static final String FILEPATH_SCHEDULE = "C:\\Users\\Solar\\IdeaProjects\\PSD2_Group8Project\\AirportCheckIn\\obj";
     private static final String FILEPATH_NUMBERS = "C:\\Users\\Solar\\IdeaProjects\\PSD2_Group8Project\\AirportCheckIn\\num";
+
     //Scanner for methods
     private static Scanner in = new Scanner(System.in);
 
@@ -51,8 +50,8 @@ public class TicketBookingSystem {
                     numbers.add(scanner.nextInt());
                 } else {
                     scanner.next();
-                }
-            }
+                }//end if
+            }//end while
             //Close the scanner
             scanner.close();
 
@@ -69,7 +68,7 @@ public class TicketBookingSystem {
             System.out.println("This program is starting new.");
             //Create the new schedule:
             Schedule.updateSchedule();
-        }
+        }//end try/catch
     }//end Startup
 
     /**
@@ -95,7 +94,7 @@ public class TicketBookingSystem {
             //Put the counts into the file separated by a new line
             for(int count : counts){
                 writer.write(String.format("%d\n", count));
-            }
+            }//end for
             //Close the writer
             writer.close();
 
@@ -104,7 +103,7 @@ public class TicketBookingSystem {
         } catch (Exception ex) {
             //Inform the user that the program wasn't able to be saved.
             System.out.println("Your program was unable to be saved");
-        }
+        }//end try/catch
     }//end shutDown
 
     /**
@@ -129,8 +128,8 @@ public class TicketBookingSystem {
 
     /**
      * This method is responsible for getting the next string from the user
-     * @param request - Information about what is wanted from the user
-     * @return - the string input from the user
+     * @param request Information about what is wanted from the user
+     * @return the string input from the user
      */
     private static String getNextString(String request){
         //Print out the request and return the input from the user.
@@ -140,7 +139,7 @@ public class TicketBookingSystem {
 
     /**
      * This method is responsible for getting the month and day from the user and return the plane for that day/month
-     * @return - A plane object for the day/month that the user is looking to travel on
+     * @return A plane object for the day/month that the user is looking to travel on
      */
     private static Plane getTravelDate(){
         //Create the request
@@ -165,8 +164,8 @@ public class TicketBookingSystem {
 
     /**
      * This method is responsible for getting the basic passenger information and returning it
-     * @param plane - the plane that the passenger intends to travel on
-     * @return - a list of information about the passenger [first name, last name, seat, departure date]
+     * @param plane the plane that the passenger intends to travel on
+     * @return a list of information about the passenger [first name, last name, seat, departure date]
      */
     private static String[] getPassengerInfo(Plane plane){
         String departure = plane.getDepartureDate();
@@ -196,8 +195,8 @@ public class TicketBookingSystem {
             } catch (Exception e) {
                 //Tell the user that the seat they wanted is able to be purchased and to try a different one.
                 System.out.println("Seat unavailable try again.");
-            }
-        }
+            }//end try/catch
+        }//end while
 
         //Create an array to return the information and return it.
         String[] information = {firstName, lastName, seat, departure};
@@ -229,7 +228,7 @@ public class TicketBookingSystem {
         if(numberOfTickets > 1){
             System.out.println("Please start with the person responsible for everyone. " +
                     "(I.E. book yourself before you book your children)");
-        }
+        }//end if
 
         //This is to be able to attach children to 1=Adult 3=Senior
         int responsiblePartyType = 1;
@@ -247,7 +246,7 @@ public class TicketBookingSystem {
             //Make the first passenger entered responsible for everyone - update passenger type
             if(passenger == 0){
                 responsiblePartyType = passengerType;
-            }
+            }//end if
 
             //Get the information from the passenger
             String[] information = getPassengerInfo(theirPlane);
@@ -304,12 +303,11 @@ public class TicketBookingSystem {
         for(Senior senior : seniors){
             System.out.println("\n");
             System.out.println(senior.toString());
-        }
+        }//end for loop
 
         //Print out price owed
         DecimalFormat df = new DecimalFormat("0.00");
         System.out.println("\nYour total cost is £" + df.format(cost));
-
     }//end buyTickets
 
     /**
@@ -341,7 +339,7 @@ public class TicketBookingSystem {
 
     /**
      * This method runs the entire Airport Check In Program.
-     * @param args - any incoming arguments
+     * @param args any incoming arguments
      */
     public static void main(String[] args) {
         //Load any available data into the program.
@@ -374,7 +372,7 @@ public class TicketBookingSystem {
                 //Tell the user that they didn't choose a valid option and start again.
                 System.out.println("Invalid response.");
             }
-        }while(option != 0);
+        }while(option != 0); //end do/while
 
         //Go through shut down sequence
         shutDown();

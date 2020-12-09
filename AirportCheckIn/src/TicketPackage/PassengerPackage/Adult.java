@@ -2,14 +2,13 @@ package TicketPackage.PassengerPackage;
 
 import java.util.ArrayList;
 
-/*******
- *   AirportCheckIn:TicketPackage.PassengerPackage
- *   File: Adult
- *   Created by: Ciaran O'Boyle
- *   Created on: 08/12/2020
- *   Updated on: 08/12/2020
- *   Project Description: //TODO
- *******/
+/**
+ * //TODO: Project Description
+ * @author Ciaran O'Boyle
+ * Created on: 08/12/2020
+ * Updated on: 08/12/2020
+ * AirportCheckIn:TicketPackage.PassengerPackage:Adult
+ */
 public class Adult extends Passenger{
     private static int numberOfAdults = 0;
     private ArrayList<Child> accompanyingChildren;
@@ -96,7 +95,7 @@ public class Adult extends Passenger{
     public void removeChild(Child abandonedKid){
         System.out.println("Sorry you can't abandon your kid here.");
         //TODO Actually be able to remove a child
-    }
+    }//removeChild
 
     @Override
     /**
@@ -113,4 +112,4 @@ public class Adult extends Passenger{
         out += "\n  *    *    *    *    *    *    *";
         return out;
     }//toString
-}
+}//Adult
