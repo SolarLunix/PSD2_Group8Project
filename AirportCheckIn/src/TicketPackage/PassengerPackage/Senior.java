@@ -5,23 +5,33 @@ import java.util.ArrayList;
 /**
  * //TODO - Project Description
  * @author  Michelle Loughran
- * Created on: 08/12/2020
+ * Created on: 30/11/2020
  * Updated on: 08/12/2020
  * AirportCheckIn:TicketPackage.PassengerPackage:Senior
  */
 public class Senior extends Passenger{
+    //declares the Senior class access as public
+    // Public classes are visible to all other classes.
+    // All the other classes in the package can access the public fields or methods
+
     private static int numberOfSeniors = 0;
+    // private static integer = private will allow the use of the variables access within the class
+    // and static means we can access the variable in a static method.
+    // as a non-static variable cannot be accessed in a static method.
+    // the number of over65's travelling
+
     private ArrayList<Child> accompanyingChildren;
+    //private ArrayList <Child> = creates an array for the accompanying children
 
     /**
-     *
+     * Default constructor
      */
     public Senior(){
         this("Noah", "Walkers", "None", "None");
     }//Senior
 
     /**
-     *
+     * constructor with first name, last name, seat, and departure date
      * @param first the first name of the passenger
      * @param last the last name of the passenger
      * @param seat the chosen seat of the passenger
@@ -31,6 +41,9 @@ public class Senior extends Passenger{
         Passenger.addPassenger();
         numberOfSeniors++;
 
+        // super keyword refers to superclass (Passenger) objects in this class
+        // It is used to call superclass methods, and to access
+        // the superclass constructor.
         super.setFirstname(first);
         super.setLastname(last);
         super.setSeat(seat);
@@ -42,20 +55,22 @@ public class Senior extends Passenger{
 
     /**
      *
-     * @return
+     * @return the number of children accompanying the senior
      */
     public int getNumberOfAccompanyingChildren(){
         return accompanyingChildren.size();
     }//getNumberOfAccompanyingChildren
 
     /**
-     *
+     * Print accompanying children to screen
      */
     public void printAccompanyingChildren(){
         int numberOfKids = getNumberOfAccompanyingChildren();
         if(numberOfKids == 0){
             System.out.println("This passenger has no kids with them.");
+            //if the number of children = 0 there are no children
         } else if(numberOfKids >= 1){
+            //otherwise get the number of children and their names and print their names
             for(int childNumber = 0; childNumber < numberOfKids; childNumber++){
                 Child theChild = accompanyingChildren.get(childNumber);
                 String childName = theChild.getFirstName() + " " + theChild.getLastname();
@@ -65,7 +80,7 @@ public class Senior extends Passenger{
     }//printAccompanyingChildren
 
     /**
-     *
+     * set the number of seniors
      * @param numberOfSeniors
      */
     public static void setNumberOfSeniors(int numberOfSeniors){
@@ -114,3 +129,18 @@ public class Senior extends Passenger{
         return out;
     }//toString
 }//Senior
+
+
+//Senior: <Michelle>
+//    • Variables:
+//          ◦ String seat
+//          ◦ Static Int numberOfSeniors = 0
+//          ◦ String firstName
+//          ◦ String lastName
+//          ◦ String seat
+//          ◦ Int TicketNumber
+//         ◦ Boolean travelingAlone
+//          ◦String departure date
+//          • Methods:
+//          ◦ toString
+//          ▪ Lists full name, seat number, ticketNumber, and departure date

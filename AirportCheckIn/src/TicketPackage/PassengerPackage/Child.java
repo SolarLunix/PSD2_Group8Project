@@ -3,24 +3,32 @@ package TicketPackage.PassengerPackage;
 /**
  * //TODO - Project Description
  * @author Michelle Loughran
- * Created on: 02/12/2020
+ * Created on: 03/11/2020
  * Updated on: 08/12/2020
  * AirportCheckIn:TicketPackage.PassengerPackage:Child
  */
 public class Child extends Passenger{
-    private static int numberOfChildren = 0;
+    //declares the Child class access as public
+
+    private static int numberOfChildren = 0;// static variable number of children travelling
+    // Public classes are visible to all other classes.
+    // All the other classes in the package can access the public fields or methods
+
     private boolean travelingAlone;
-    private String responsibleAdult;
+    //whether the child is travelling alone or not true / false
+    // private boolean = private will allow the use of the variables access within the class
+
+    private String responsibleAdult; //name of responsible adult with the child
 
     /**
-     *
+     * default constructor creates a Child with first name, last name seat and departure date
      */
     public Child(){
         this("Noah", "Walkers", "None", "None");
     }//Child
 
     /**
-     *
+     * Constructor with first name, last name, seat, and departure date
      * @param first
      * @param last
      * @param seat
@@ -30,6 +38,9 @@ public class Child extends Passenger{
         Passenger.addPassenger();
         numberOfChildren++;
         travelingAlone = true;
+        // super refers to superclass (Passenger) objects in this class
+        // It is used to call Passenger methods, and to access
+        // the superclass constructor.
         super.setFirstname(first);
         super.setLastname(last);
         super.setSeat(seat);
@@ -39,14 +50,14 @@ public class Child extends Passenger{
 
     /**
      *
-     * @return
+     * @return the total number of children travelling
      */
     public static int getNumberOfChildren(){
         return numberOfChildren;
     }//getNumberOfChildren
 
     /**
-     *
+     * Sets the number of children travelling
      * @param numberOfChildren
      */
     public static void setNumberOfChildren(int numberOfChildren){
@@ -54,7 +65,8 @@ public class Child extends Passenger{
     }//setNumberOfChildren
 
     /**
-     *
+     * name of responsible adult who is travelling with the child
+     * travelingAlone set to false
      * @param responsibleAdult
      */
     public void setResponsibleAdult(String responsibleAdult) {
@@ -64,7 +76,7 @@ public class Child extends Passenger{
 
     /**
      *
-     * @return
+     * @return name of responsible adult who is travelling with the child
      */
     public String getResponsibleAdult(){
         return responsibleAdult;
@@ -72,7 +84,7 @@ public class Child extends Passenger{
 
     @Override
     /**
-     *
+     * outputs to screen the passenger details
      */
     public String toString(){
         String out = "  *  *  *  PASSENGER DETAILS  *  *  *";

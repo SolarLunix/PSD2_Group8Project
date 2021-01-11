@@ -30,6 +30,8 @@ public class Adult extends Passenger{
     public Adult(String first, String last, String seat, String departureDate){
         Passenger.addPassenger();
         numberOfAdults++;
+        // This method Passenger.addPassenger() adds Passengers to the list of adult passengers
+        // numberOfAdults++ increments the number of Adult passengers by one each time this method is called
 
         super.setFirstname(first);
         super.setLastname(last);
@@ -39,6 +41,10 @@ public class Adult extends Passenger{
 
         this.accompanyingChildren = new ArrayList<>();
     }//Adult
+    // The super.set methods set the values of the variables Firstname, Lastname, Seat, TicketNumber and Departure Date
+    // to be stored in their respective reference variables first, last, seat,(Passenger.getNumberOfPassengers() as a method),
+    // and departureDate. The set methods are called in from the super class 'Passenger' using the keyword 'super'.
+    // this keyword is used to call accompanyingChidlren which is a variable stored in an array list.
 
     /**
      *
@@ -47,7 +53,7 @@ public class Adult extends Passenger{
     public static int getNumberOfAdults(){
         return numberOfAdults;
     }//getNumberOfAdults
-
+    // this get method returns the number of adult passengers
     /**
      *
      * @return
@@ -55,6 +61,7 @@ public class Adult extends Passenger{
     public int getNumberOfAccompanyingChildren(){
         return accompanyingChildren.size();
     }//getNumberOfAccompanyingChildren
+    // getNumberOfAccompanying Children returns the total number of Accompanying Children .size();
 
     /**
      *
@@ -63,6 +70,7 @@ public class Adult extends Passenger{
     public static void setNumberOfAdults(int numberOfAdults){
         Adult.numberOfAdults = numberOfAdults;
     }//setNumberOfAdults
+    // this set method sets the number of adults with the parameter (int numberOfAdults) to be stored in 'numberOfAdults';
 
     /**
      *
@@ -111,5 +119,5 @@ public class Adult extends Passenger{
         out += "\nNumber of Children:             " + getNumberOfAccompanyingChildren();
         out += "\n  *    *    *    *    *    *    *";
         return out;
-    }//toString
+    }//toString imports set methods from the super class and outputs the variables
 }//Adult

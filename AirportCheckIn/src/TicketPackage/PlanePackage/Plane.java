@@ -19,7 +19,6 @@ public class Plane implements Serializable {
     private static final int[] SEATS_IN_ROW = {1, 2, 3, 4, 5, 6};
     private static final double[][][] PRICES = createWeekdayVariations();
     private static final ArrayList<String> SEATS = createSeatingChart();
-    private static int totalSeats = 0;
 
     //instance variables
     private String departureDate;
@@ -206,7 +205,6 @@ public class Plane implements Serializable {
      */
     private static ArrayList<String> createSeatingChart(){
         //reinitialise total seats to 0
-        totalSeats = 0;
         //Set up the rows, and seats in a row
         ArrayList<String> seatList = new ArrayList<String>();
 
@@ -215,7 +213,6 @@ public class Plane implements Serializable {
             for(int seat: SEATS_IN_ROW){
                 String theSeat = String.format("%c%d", row, seat);
                 seatList.add(theSeat);
-                totalSeats++;
                 //System.out.println(theSeat + " was created."); //TESTING
             }//end for loop
         }//end for loop
@@ -231,7 +228,7 @@ public class Plane implements Serializable {
         DecimalFormat df = new DecimalFormat("0.00");
         String out = "\n  *    *    *    *    *    *    *";
         out += String.format("\nThis plane departs on %s", getDepartureDate());
-        out += String.format("\nThis Plane has a total of %d seats.", totalSeats);
+        out += String.format("\nThis Plane has a total of %d seats.", SEATS.size());
         out += String.format("\nThere are %d passengers on this flight.", takenSeats.size());
         out += String.format("\n\t- %d Adults (Price: £%s)", adults.size(), df.format(getAdultPrice()));
         out += String.format("\n\t- %d Children (Price: £%s)", children.size(), df.format(getChildPrice()));

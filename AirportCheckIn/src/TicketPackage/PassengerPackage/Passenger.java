@@ -128,7 +128,7 @@ public abstract class Passenger implements Serializable {
         System.out.println("The passenger first name is:  " + firstName);
         System.out.println("The passenger last name is:   " + lastName);
         System.out.println("The ticket number is:         " + ticketNumber);
-        System.out.println("The ticket number is:         " + departureDate);
+        System.out.println("The departure date is:         " + departureDate);
         System.out.println("* * * END * * *");
     }//showAllDetails
 }//Passenger
